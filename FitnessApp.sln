@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessAppInterface", "FintessAppInterface\FitnessAppInterface.csproj", "{0545BA76-311E-476C-84AE-0E2203C2781B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FintnessAppBusinessLogic", "FintnessAppBusinessLogic\FintnessAppBusinessLogic.csproj", "{95FD0900-6AEB-49FF-95D1-3898E7EDBBB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessAppBusinessLogic", "FintnessAppBusinessLogic\FitnessAppBusinessLogic.csproj", "{95FD0900-6AEB-49FF-95D1-3898E7EDBBB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
