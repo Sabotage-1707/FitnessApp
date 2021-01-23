@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FintnessAppBusinessLogic.Control;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,18 @@ namespace FitnessAppInterface
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var userController = new UserController(UserName.Text,
+                                                    UserGender.Text,
+                                                    DateTime.Parse(UserBirthday.Text),
+                                                    Double.Parse(UserWeight.Text),
+                                                    Double.Parse(UserHeight.Text));
+            userController.Save();
+            var MyUser = new UserController();
+            MessageBox.Show(MyUser.User.Name);
         }
     }
 }

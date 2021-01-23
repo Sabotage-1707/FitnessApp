@@ -1,14 +1,16 @@
-﻿using FitnessAppBusinessLogic.Model;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FitnessAppBusinessLogic
+namespace FintnessAppBusinessLogic
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(String[] args)
         {
-            
-            
+
         }
     }
 }

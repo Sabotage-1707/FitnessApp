@@ -40,7 +40,7 @@ namespace FitnessAppBusinessLogic.Model
         /// <param name="birthday">Дата рождения.</param>
         /// <param name="weight">Вес.</param>
         /// <param name="height">Рост.</param>
-        public User(string name, Gender gender, DateTime birthday, double weight, int height)
+        public User(string name, Gender gender, DateTime birthday, double weight, double height)
         {
             #region Проверка входных значений
             if (birthday <= DateTime.Parse("01.01.1900") || birthday >= DateTime.Now)

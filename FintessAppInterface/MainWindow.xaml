@@ -6,7 +6,20 @@
         xmlns:local="clr-namespace:FintessAppInterface"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
         
+        <TextBox x:Name="UserName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="36,30,0,0" />
+        <TextBox x:Name="UserGender" HorizontalAlignment="Left" Height="23" Margin="36,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="UserWeight" HorizontalAlignment="Left" Height="23" Margin="36,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="UserHeight" HorizontalAlignment="Left" Height="23" Margin="36,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="56,250,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Label Content="Имя пользователя" HorizontalAlignment="Left" Margin="174,30,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пол" HorizontalAlignment="Left" Margin="174,75,0,0" VerticalAlignment="Top"/>
+        <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="174,115,0,0" VerticalAlignment="Top"/>
+        <Label Content="Вес" HorizontalAlignment="Left" Margin="174,160,0,0" VerticalAlignment="Top"/>
+        <Label Content="Рост" HorizontalAlignment="Left" Margin="174,205,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="UserBirthday" HorizontalAlignment="Left" Height="23" Margin="36,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </Window>
