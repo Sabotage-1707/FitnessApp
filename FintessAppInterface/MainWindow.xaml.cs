@@ -1,4 +1,5 @@
 ﻿using FintnessAppBusinessLogic.Control;
+using FintnessAppBusinessLogic.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace FitnessAppInterface
     public partial class MainWindow : Window
     {
         UserController userController;
+        EatingController eatingController;
         public MainWindow()
         {
             InitializeComponent();
@@ -36,19 +38,22 @@ namespace FitnessAppInterface
                     userController = new UserController(UserName.Text);
                     if (userController.IsNewUser)
                     {
-                        ShowFields();
+                        ShowUserFields();
                     }
                     else
                     {
                         MessageBox.Show(userController.CurrentUser.ToString());
+                        FoodArea.Visibility = Visibility.Visible;
+                        UserArea.Visibility = Visibility.Hidden;
+                        eatingController = new EatingController(userController.CurrentUser);
                     }
                 }
                 else
                 {
                     userController.SetNewUserData(UserGender.Text,
                                                   DateTime.Parse(UserBirthday.Text),
-                                                  Double.Parse(UserWeight.Text),
-                                                  Double.Parse(UserHeight.Text));
+                                                  double.Parse(UserWeight.Text),
+                                                  double.Parse(UserHeight.Text));
                     MessageBox.Show(userController.CurrentUser.ToString());
                 }
             }
@@ -60,12 +65,15 @@ namespace FitnessAppInterface
             {
                 MessageBox.Show(ex.Message, "Некорректный Аргумент");
             }
-            
-                                                   
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Непредвиденная ошибка");
+            }
+
+
 
         }
-        private void ShowFields()
+        private void ShowUserFields()
         {
             UserGender.Visibility = Visibility.Visible;
             UserGenderLabel.Visibility = Visibility.Visible;
@@ -76,6 +84,42 @@ namespace FitnessAppInterface
             UserWeight.Visibility = Visibility.Visible;
             UserWeightLabel.Visibility = Visibility.Visible;
             Apply.Content = "Добавить";
+        }
+
+        private void FoodButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                eatingController.Add(new Food(FoodName.Text,
+                                                      double.Parse(FoodProteins.Text),
+                                                      double.Parse(FoodCallories.Text),
+                                                      double.Parse(FoodFats.Text),
+                                                      double.Parse(FoodCarbohydrates.Text)),
+                                                      double.Parse(FoodWeight.Text));
+                MessageBox.Show("Успешно добавлено!");
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message, "Некорректный формат");
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Некорректный Аргумент");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Непредвиденная ошибка");
+            }
+
+
+        }
+
+        private void ShowAllFoods_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in eatingController.Eating.Foods)
+            {
+                MessageBox.Show($"Блюдо {item.Key} - {item.Value} грамм)");
+            }
         }
     }
 }

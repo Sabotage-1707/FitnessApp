@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control\BaseController.cs" />
+    <Compile Include="Control\EatingController.cs" />
     <Compile Include="Control\UserController.cs" />
+    <Compile Include="Model\Eating.cs" />
     <Compile Include="Model\Food.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Model\Gender.cs" />

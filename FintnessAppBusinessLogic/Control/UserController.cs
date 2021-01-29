@@ -47,8 +47,7 @@ namespace FintnessAppBusinessLogic.Control
             }
             Users = GetUsersData();
             
-                CurrentUser = Users.SingleOrDefault(u => u.Name == userName);
-           
+            CurrentUser = Users.SingleOrDefault(u => u.Name == userName);
 
             if(CurrentUser == null)
             {
@@ -85,8 +84,7 @@ namespace FintnessAppBusinessLogic.Control
         /// <returns>Пользователи приложения.</returns>
         public List<User> GetUsersData()
         {
-            var list = Load<List<User>>(USER_FILE_NAME);
-            return list == null ? new List<User>() : list;
+            return Load<List<User>>(USER_FILE_NAME) ?? new List<User>();
         }
     }
 }

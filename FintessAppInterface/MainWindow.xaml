@@ -8,18 +8,36 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
-
-        <TextBox x:Name="UserName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="36,30,0,0" />
-        <TextBox x:Name="UserGender" HorizontalAlignment="Left" Height="23" Margin="36,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        <TextBox x:Name="UserWeight" HorizontalAlignment="Left" Height="23" Margin="36,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        <TextBox x:Name="UserHeight" HorizontalAlignment="Left" Height="23" Margin="36,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        <Button x:Name="Apply" Content="Найти" HorizontalAlignment="Left" Margin="340,33,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click"/>
-        <Label Content="Имя пользователя" HorizontalAlignment="Left" Margin="174,30,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="UserGenderLabel" Content="Пол" HorizontalAlignment="Left" Margin="174,75,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-        <Label x:Name="UserBirthdayLabel" Content="Дата рождения" HorizontalAlignment="Left" Margin="174,115,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-        <Label x:Name="UserWeightLabel" Content="Вес" HorizontalAlignment="Left" Margin="174,160,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-        <Label x:Name="UserHeightLabel" Content="Рост" HorizontalAlignment="Left" Margin="174,205,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-        <TextBox x:Name="UserBirthday" HorizontalAlignment="Left" Height="23" Margin="36,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        <Grid Margin="0,10,375,29" x:Name="UserArea">
+            <TextBox x:Name="UserName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="36,30,0,0" />
+            <TextBox x:Name="UserGender" HorizontalAlignment="Left" Height="23" Margin="36,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+            <TextBox x:Name="UserWeight" HorizontalAlignment="Left" Height="23" Margin="36,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+            <TextBox x:Name="UserHeight" HorizontalAlignment="Left" Height="23" Margin="36,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+            <Button x:Name="Apply" Content="Войти" HorizontalAlignment="Left" Margin="304,33,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click"/>
+            <Label Content="Имя пользователя" HorizontalAlignment="Left" Margin="174,30,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="UserGenderLabel" Content="Пол" HorizontalAlignment="Left" Margin="174,75,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="UserBirthdayLabel" Content="Дата рождения" HorizontalAlignment="Left" Margin="174,115,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="UserWeightLabel" Content="Вес" HorizontalAlignment="Left" Margin="174,160,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <Label x:Name="UserHeightLabel" Content="Рост" HorizontalAlignment="Left" Margin="174,205,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+            <TextBox x:Name="UserBirthday" HorizontalAlignment="Left" Height="23" Margin="36,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
+        </Grid>
+        
+        <Grid HorizontalAlignment="Left" Height="308" Margin="437,30,0,0" VerticalAlignment="Top" Width="329" x:Name="FoodArea" Visibility="Hidden">
+            <TextBox x:Name="FoodName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="2,0,0,0" />
+            <Label Content="Название пищи" HorizontalAlignment="Left" Margin="138,0,0,282" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="FoodWeight" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="2,44,0,0" />
+            <Label Content="Вес порции" HorizontalAlignment="Left" Margin="138,0,0,238" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="FoodProteins" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="0,88,0,0" />
+            <Label x:Name="FoodProteinsLabel" Content="Белки" HorizontalAlignment="Left" Margin="138,88,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.524,2.385"/>
+            <TextBox x:Name="FoodCallories" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="0,131,0,0" />
+            <Label x:Name="FoodCalloriesLabel" Content="Каллории" HorizontalAlignment="Left" Margin="138,128,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="FoodFats" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="0,159,0,0" />
+            <Label x:Name="FoodFatsLabel" Content="Жиры" HorizontalAlignment="Left" Margin="138,159,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="FoodCarbohydrates" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="0,187,0,0"  />
+            <Label x:Name="FoodCarbohydratesLabel" Content="Углеводы" HorizontalAlignment="Left" Margin="138,190,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.516,1.635"/>
+            <Button x:Name="FoodButton" Content="Добавить продукт" HorizontalAlignment="Left" Margin="2,234,0,0" VerticalAlignment="Top" Width="118" Height="42" Click="FoodButton_Click" RenderTransformOrigin="0.55,2.071"/>
+            <Button x:Name="ShowAllFoods" Content="Показать сьеденные продукты" HorizontalAlignment="Left" Margin="137,234,0,0" VerticalAlignment="Top" Width="189" Height="42" RenderTransformOrigin="0.55,2.071" Click="ShowAllFoods_Click"/>
+        </Grid>
 
     </Grid>
 </Window>
