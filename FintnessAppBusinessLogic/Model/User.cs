@@ -18,11 +18,11 @@ namespace FitnessAppBusinessLogic.Model
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
         /// <summary>
         /// Дата рождения.
         /// </summary>
-        public DateTime Birthday { get; }
+        public DateTime Birthday { get; set; }
         /// <summary>
         /// Вес.
         /// </summary>
@@ -31,6 +31,19 @@ namespace FitnessAppBusinessLogic.Model
         /// Рост.
         /// </summary>
         public double Height { get; set; }
+        /// <summary>
+        /// Возраст.
+        /// </summary>
+        public int Age
+        {
+            get
+            {
+                DateTime dateNow = DateTime.Today;
+                int age = dateNow.Year - Birthday.Year;
+                if (Birthday > dateNow.AddYears(-age)) age--;
+                return age;
+            }
+        }
         #endregion
         /// <summary>
         /// Создание пользователя
@@ -63,9 +76,19 @@ namespace FitnessAppBusinessLogic.Model
             Weight = weight;
             Height = height;
         }
+
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Имя не может быть пустым или null.", nameof(name));
+            }
+            Name = name;
+        }
+
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age + "(лет/год)";
         }
     }
 }

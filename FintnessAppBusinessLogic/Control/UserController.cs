@@ -12,12 +12,20 @@ namespace FintnessAppBusinessLogic.Control
     /// <summary>
     /// Контроллер пользователя приложения.
     /// </summary>
-    public class UserController
+    public class UserController : BaseController
     {
+       
+        public const string USER_FILE_NAME = "users.dat";
         /// <summary>
-        /// Пользователь.
+        /// Все пользователи.
         /// </summary>
-        public User User { get; }
+        public List<User> Users { get; set; }
+        /// <summary>
+        /// Текущий пользователь.
+        /// </summary>
+        public User CurrentUser { get; }
+        public bool IsNewUser { get; set; } = false;
+
 
         /// <summary>
         /// 
@@ -29,34 +37,56 @@ namespace FintnessAppBusinessLogic.Control
         /// <param name="userHeight">Рост.</param>
         public UserController(string userName, string genderName, DateTime userBirthday, double userWeight, double userHeight)
         {
-            User = new User(userName, new Gender(genderName), userBirthday, userWeight, userHeight);
+            CurrentUser = new User(userName, new Gender(genderName), userBirthday, userWeight, userHeight);
         }
-        
+        public UserController(string userName)
+        {
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                throw new ArgumentNullException("Пользователь не может быть null.", nameof(userName));
+            }
+            Users = GetUsersData();
+            
+                CurrentUser = Users.SingleOrDefault(u => u.Name == userName);
+           
+
+            if(CurrentUser == null)
+            {
+                CurrentUser = new User(userName);
+                Users.Add(CurrentUser);
+                IsNewUser = true;
+                Save();
+            }
+        }
         /// <summary>
-        /// Сохранение данных пользователя в файл.
+        /// Сохранение данных пользователей в файл.
         /// </summary>
         public void Save()
         {
-            var formatter = new BinaryFormatter();
-            using(var fs = new FileStream("users.bin", FileMode.OpenOrCreate))
+            Save(USER_FILE_NAME, Users);
+        }
+        public void SetNewUserData(string genderName, DateTime birthDay, double weight = 1, double height = 1)
+        {
+            if(birthDay == null)
             {
-                    formatter.Serialize(fs, User);
+                throw new ArgumentNullException("Дата рождения не можеть быть пустой или null.", nameof(birthDay));
             }
+            var gen = new Gender(genderName);
+            CurrentUser.Gender = gen;
+            CurrentUser.Birthday = birthDay;
+            CurrentUser.Weight = weight;
+            CurrentUser.Height = height;
+            Save();
+            
         }
         /// <summary>
         /// Получить данные пользователя.
         /// </summary>
-        /// <returns>Пользователь приложения.</returns>
-        public UserController()
+        /// <returns>Пользователи приложения.</returns>
+        public List<User> GetUsersData()
         {
-            var formatter = new BinaryFormatter();
-            using (var fs = new FileStream("users.bin", FileMode.OpenOrCreate))
-            {
-                if (formatter.Deserialize(fs) is User user)
-                {
-                    User = user;
-                }
-            }
+            var list = Load<List<User>>(USER_FILE_NAME);
+            return list == null ? new List<User>() : list;
         }
     }
 }

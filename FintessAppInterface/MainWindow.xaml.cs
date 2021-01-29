@@ -21,6 +21,7 @@ namespace FitnessAppInterface
     /// </summary>
     public partial class MainWindow : Window
     {
+        UserController userController;
         public MainWindow()
         {
             InitializeComponent();
@@ -28,14 +29,43 @@ namespace FitnessAppInterface
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var userController = new UserController(UserName.Text,
-                                                    UserGender.Text,
-                                                    DateTime.Parse(UserBirthday.Text),
-                                                    Double.Parse(UserWeight.Text),
-                                                    Double.Parse(UserHeight.Text));
-            userController.Save();
-            var MyUser = new UserController();
-            MessageBox.Show(MyUser.User.Name);
+
+            if (UserGender.Visibility == Visibility.Hidden)
+            {
+                userController = new UserController(UserName.Text);
+                if (userController.IsNewUser)
+                {
+                    ShowFields();
+                }
+                else
+                {
+                    MessageBox.Show(userController.CurrentUser.ToString());
+                }
+            }
+            else
+            {
+                userController.SetNewUserData(UserGender.Text,
+                                              DateTime.Parse(UserBirthday.Text),
+                                              Double.Parse(UserWeight.Text),
+                                              Double.Parse(UserHeight.Text));
+                MessageBox.Show(userController.CurrentUser.ToString());
+            }
+            
+                                                   
+            
+
+        }
+        private void ShowFields()
+        {
+            UserGender.Visibility = Visibility.Visible;
+            UserGenderLabel.Visibility = Visibility.Visible;
+            UserBirthday.Visibility = Visibility.Visible;
+            UserBirthdayLabel.Visibility = Visibility.Visible;
+            UserHeight.Visibility = Visibility.Visible;
+            UserHeightLabel.Visibility = Visibility.Visible;
+            UserWeight.Visibility = Visibility.Visible;
+            UserWeightLabel.Visibility = Visibility.Visible;
+            Apply.Content = "Добавить";
         }
     }
 }
