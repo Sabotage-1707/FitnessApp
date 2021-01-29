@@ -29,26 +29,36 @@ namespace FitnessAppInterface
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            if (UserGender.Visibility == Visibility.Hidden)
+            try
             {
-                userController = new UserController(UserName.Text);
-                if (userController.IsNewUser)
+                if (UserGender.Visibility == Visibility.Hidden)
                 {
-                    ShowFields();
+                    userController = new UserController(UserName.Text);
+                    if (userController.IsNewUser)
+                    {
+                        ShowFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show(userController.CurrentUser.ToString());
+                    }
                 }
                 else
                 {
+                    userController.SetNewUserData(UserGender.Text,
+                                                  DateTime.Parse(UserBirthday.Text),
+                                                  Double.Parse(UserWeight.Text),
+                                                  Double.Parse(UserHeight.Text));
                     MessageBox.Show(userController.CurrentUser.ToString());
                 }
             }
-            else
+            catch(FormatException ex)
             {
-                userController.SetNewUserData(UserGender.Text,
-                                              DateTime.Parse(UserBirthday.Text),
-                                              Double.Parse(UserWeight.Text),
-                                              Double.Parse(UserHeight.Text));
-                MessageBox.Show(userController.CurrentUser.ToString());
+                MessageBox.Show(ex.Message,"Некорректный формат");
+            }
+            catch(ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Некорректный Аргумент");
             }
             
                                                    
