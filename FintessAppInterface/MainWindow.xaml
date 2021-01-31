@@ -5,26 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FintessAppInterface"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        
+        Title="MainWindow" Height="450" Width="900" FontFamily="Microsoft Sans Serif" FontSize="13" Foreground="#FF6DAC22" Background="#FFE89A64">
 
     <Grid>
-        <Grid Margin="0,10,375,29" x:Name="UserArea">
-            <TextBox x:Name="UserName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="36,30,0,0" />
-            <TextBox x:Name="UserGender" HorizontalAlignment="Left" Height="23" Margin="36,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-            <TextBox x:Name="UserWeight" HorizontalAlignment="Left" Height="23" Margin="36,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-            <TextBox x:Name="UserHeight" HorizontalAlignment="Left" Height="23" Margin="36,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-            <Button x:Name="Apply" Content="Войти" HorizontalAlignment="Left" Margin="304,33,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click"/>
-            <Label Content="Имя пользователя" HorizontalAlignment="Left" Margin="174,30,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="UserGenderLabel" Content="Пол" HorizontalAlignment="Left" Margin="174,75,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <Label x:Name="UserBirthdayLabel" Content="Дата рождения" HorizontalAlignment="Left" Margin="174,115,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <Label x:Name="UserWeightLabel" Content="Вес" HorizontalAlignment="Left" Margin="174,160,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <Label x:Name="UserHeightLabel" Content="Рост" HorizontalAlignment="Left" Margin="174,205,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-            <TextBox x:Name="UserBirthday" HorizontalAlignment="Left" Height="23" Margin="36,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="UserArea" Grid.Column="1" Grid.Row="1" Orientation="Vertical">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Margin" Value="0,10,0,0"/>
+                    <Setter Property="Orientation" Value="Horizontal"/>
+                </Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Height" Value="23"/>
+                    <Setter Property="Width" Value="150"/>
+                </Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Margin" Value="10,0,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+            
+           <StackPanel>
+                <TextBox x:Name="UserName" Height="23"/>
+                <Label x:Name="UserNameLabel"/>
+            </StackPanel>
+            <StackPanel >
+                <TextBox x:Name="UserGender"/>
+                <Label x:Name="UserGenderLabel"/>
+            </StackPanel>
+            <StackPanel >
+                <TextBox x:Name="UserWeight"/>
+                <Label x:Name="UserWeightLabel"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBox x:Name="UserHeight" />
+                <Label x:Name="UserHeightLabel"/>
+            </StackPanel>
+            <StackPanel >
+                <TextBox x:Name="UserBirthday"/>
+                <Label x:Name="UserBirthdayLabel"/>
+            </StackPanel>
+            <Button x:Name="Apply" Content="Войти" Width="74" Click="Button_Click" Margin="0,20,20,0"/>
+        </StackPanel>
         
-        <Grid HorizontalAlignment="Left" Height="308" Margin="437,30,0,0" VerticalAlignment="Top" Width="329" x:Name="FoodArea" Visibility="Hidden">
+        <Grid Grid.Column="2" Grid.Row="1" x:Name="FoodArea" Margin="10,0,0,0" Visibility="Hidden">
             <TextBox x:Name="FoodName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="2,0,0,0" />
-            <Label Content="Название пищи" HorizontalAlignment="Left" Margin="138,0,0,282" VerticalAlignment="Bottom"/>
+            <Label x:Name="FoodNameLabel" Content="Название пищи" HorizontalAlignment="Left" Margin="138,0,0,282" VerticalAlignment="Bottom"/>
             <TextBox x:Name="FoodWeight" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="2,44,0,0" />
             <Label Content="Вес порции" HorizontalAlignment="Left" Margin="138,0,0,238" VerticalAlignment="Bottom"/>
             <TextBox x:Name="FoodProteins" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="0,88,0,0" />
@@ -38,6 +79,51 @@
             <Button x:Name="FoodButton" Content="Добавить продукт" HorizontalAlignment="Left" Margin="2,234,0,0" VerticalAlignment="Top" Width="118" Height="42" Click="FoodButton_Click" RenderTransformOrigin="0.55,2.071"/>
             <Button x:Name="ShowAllFoods" Content="Показать сьеденные продукты" HorizontalAlignment="Left" Margin="137,234,0,0" VerticalAlignment="Top" Width="189" Height="42" RenderTransformOrigin="0.55,2.071" Click="ShowAllFoods_Click"/>
         </Grid>
+        <StackPanel  x:Name="ToDoArea" Grid.Column="1" Grid.Row="2" Visibility="Hidden">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="Margin" Value="0,0,0,10"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Name="ShowFoodAreaButton" Content="Добавить сьеденную пищу" Click="ShowFoodAreaButton_Click"/>
+            <Button x:Name="ShowExersiceAreaButton" Content="Добавить проделанное упражнение" Click="ShowExersiceAreaButton_Click"/>
+        </StackPanel>
+        <StackPanel x:Name="ExerciseArea" Grid.Column="3" Grid.Row="1" Orientation="Vertical" Visibility="Hidden">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Margin" Value="0,10,0,0"/>
+                    <Setter Property="Orientation" Value="Horizontal"/>
+                </Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Height" Value="23"/>
+                    <Setter Property="Width" Value="150"/>
+                </Style>
+                <Style TargetType="{x:Type Label}">
+                    <Setter Property="Margin" Value="10,0,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel >
+                <TextBox x:Name="ExerciseName"/>
+                <Label x:Name="ExerciseNameLabel"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBox x:Name="ExerciseStart" />
+                <Label x:Name="ExerciseStartLabel" MinWidth="150"/>
+            </StackPanel>
+            <StackPanel >
+                <TextBox x:Name="ExerciseFinish"/>
+                <Label x:Name="ExerciseFinishLabel"/>
+            </StackPanel>
+            <StackPanel >
+                <TextBox x:Name="ExerciseEnergy"/>
+                <Label x:Name="ExerciseEnergyLabel"/>
+            </StackPanel>
+            
+            
+            <Button x:Name="AddExerciseButton" Content="Добавить упражение" Click="AddExerciseButton_Click" Margin="50,20,50,0"/>
+            <Button x:Name="ShowExerciseButton" Content="Показать выполненные упражения" Click="ShowExerciseButton_Click" Margin="50,20,50,0"/>
+        </StackPanel>
 
     </Grid>
 </Window>
