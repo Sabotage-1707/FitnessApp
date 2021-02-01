@@ -14,6 +14,7 @@ namespace FintnessAppBusinessLogic.Model
     [Serializable]
     public class Eating
     {
+        public int Id { get; set; }
         /// <summary>
         /// Время приема пищи
         /// </summary>
@@ -22,12 +23,13 @@ namespace FintnessAppBusinessLogic.Model
         /// Список еды.
         /// </summary>
         public Dictionary<Food,double> Foods{ get;}
-        
-        public User user { get; }
+        public int UserId { get; set; }
+
+        public virtual User User { get; set; }
 
         public Eating(User user)
         {
-            this.user = user ?? throw new ArgumentNullException(nameof(user));
+            User = user ?? throw new ArgumentNullException(nameof(user));
             Moment = DateTime.UtcNow;
             Foods = new Dictionary<Food, double>();
         }

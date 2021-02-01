@@ -25,7 +25,7 @@ namespace FintnessAppBusinessLogic.Control
         /// </summary>
         public User CurrentUser { get; }
         public bool IsNewUser { get; set; } = false;
-
+        private IDataSaver manager;
 
         /// <summary>
         /// 
@@ -39,12 +39,13 @@ namespace FintnessAppBusinessLogic.Control
         {
             CurrentUser = new User(userName, new Gender(genderName), userBirthday, userWeight, userHeight);
         }
-        public UserController(string userName)
+        public UserController(string userName, IDataSaver manager)
         {
             if (string.IsNullOrWhiteSpace(userName))
             {
                 throw new ArgumentNullException("Пользователь не может быть null.", nameof(userName));
             }
+            this.manager = manager ?? throw new ArgumentNullException("Способ работы не может быть пустым или null", nameof(manager));
             Users = GetUsersData();
             
             CurrentUser = Users.SingleOrDefault(u => u.Name == userName);
@@ -62,7 +63,7 @@ namespace FintnessAppBusinessLogic.Control
         /// </summary>
         public void Save()
         {
-            Save(USER_FILE_NAME, Users);
+            Save(Users,manager);
         }
         public void SetNewUserData(string genderName, DateTime birthDay, double weight = 1, double height = 1)
         {
@@ -84,7 +85,7 @@ namespace FintnessAppBusinessLogic.Control
         /// <returns>Пользователи приложения.</returns>
         public List<User> GetUsersData()
         {
-            return Load<List<User>>(USER_FILE_NAME) ?? new List<User>();
+            return Load<User>(manager) ?? new List<User>();
         }
     }
 }

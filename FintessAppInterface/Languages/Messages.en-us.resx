@@ -118,81 +118,81 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddExercise" xml:space="preserve">
-    <value>Добавить упражение</value>
+    <value>Add exercise</value>
   </data>
   <data name="AddFood" xml:space="preserve">
-    <value>Добавить еду</value>
+    <value>Add food</value>
   </data>
   <data name="exerciseEnergy" xml:space="preserve">
-    <value>Затрачиваемые каллории в минуту</value>
+    <value>Exercise energy</value>
   </data>
   <data name="exerciseFinish" xml:space="preserve">
-    <value>Время окончания упражения</value>
+    <value>Finish exercise time</value>
   </data>
   <data name="exerciseName" xml:space="preserve">
-    <value>Название упражнения</value>
+    <value>Exercise name</value>
   </data>
   <data name="exerciseStart" xml:space="preserve">
-    <value>Время начала упражения</value>
+    <value>Begin exercise time</value>
   </data>
   <data name="foodButtonAdd" xml:space="preserve">
-    <value>Добавить пищу</value>
+    <value>Add food</value>
   </data>
   <data name="foodCallories" xml:space="preserve">
-    <value>Каллории</value>
+    <value>Callories</value>
   </data>
   <data name="foodCarbohydrates" xml:space="preserve">
-    <value>Углеводы</value>
+    <value>Carbohydrates</value>
   </data>
   <data name="foodFats" xml:space="preserve">
-    <value>Жиры</value>
+    <value>Fats</value>
   </data>
   <data name="foodName" xml:space="preserve">
-    <value>Название пищи</value>
+    <value>Food name</value>
   </data>
   <data name="foodProteins" xml:space="preserve">
-    <value>Белки</value>
+    <value>Proyeins</value>
   </data>
   <data name="foodWeight" xml:space="preserve">
-    <value>Вес порции пищи</value>
+    <value>Food weight</value>
   </data>
   <data name="LogIn" xml:space="preserve">
-    <value>Войти</value>
+    <value>Log In</value>
   </data>
   <data name="ShowCompletedExercises" xml:space="preserve">
-    <value>Показать выполненные упражнения</value>
+    <value>Show completed exercises</value>
   </data>
   <data name="ShowEatenFood" xml:space="preserve">
-    <value>Показать съеденную еду</value>
+    <value>Show eaten food</value>
   </data>
   <data name="ShowExercises" xml:space="preserve">
-    <value>Упражнения</value>
+    <value>Show exercises</value>
   </data>
   <data name="ShowFood" xml:space="preserve">
-    <value>Еда</value>
+    <value>Food</value>
   </data>
   <data name="userBirthday" xml:space="preserve">
-    <value>Дата рождения пользователя</value>
+    <value>User birthday</value>
   </data>
   <data name="userButtonCreate" xml:space="preserve">
-    <value>Создать пользователя</value>
+    <value>Create user</value>
   </data>
   <data name="userButtonLogIn" xml:space="preserve">
-    <value>Войти</value>
+    <value>Log In</value>
   </data>
   <data name="userGender" xml:space="preserve">
-    <value>Пол пользователя</value>
+    <value>User gender</value>
   </data>
   <data name="userHeight" xml:space="preserve">
-    <value>Рост пользователя</value>
+    <value>User height</value>
   </data>
   <data name="userName" xml:space="preserve">
-    <value>Имя пользователя</value>
+    <value>User name</value>
   </data>
   <data name="userWeight" xml:space="preserve">
-    <value>Вес пользователя</value>
+    <value>User weight</value>
   </data>
   <data name="Years" xml:space="preserve">
-    <value>лет/год</value>
+    <value>years</value>
   </data>
 </root>

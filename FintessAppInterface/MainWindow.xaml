@@ -13,6 +13,7 @@
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
@@ -25,7 +26,19 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="UserArea" Grid.Column="1" Grid.Row="1" Orientation="Vertical">
+        <StackPanel Grid.Column="1" Grid.Row="0" >
+            <Menu>
+                <MenuItem Header="Language">
+                    <MenuItem Header="Русский" Click="RussianLanguage_Click"/>
+                    <MenuItem Header="English" Click="EnglishLanguage_Click"/>
+                </MenuItem>
+                <MenuItem Header="Save And Load">
+                    <MenuItem Header="From File" Click="SaveAndLoadFromFile_Click"/>
+                    <MenuItem Header="From DataBase" Click="SaveAndLoadFromDataBase_Click"/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+        <StackPanel x:Name="UserArea" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Grid.ColumnSpan="3" MinWidth="200" Margin="0,10,306,0">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type StackPanel}">
                     <Setter Property="Margin" Value="0,10,0,0"/>
@@ -33,16 +46,16 @@
                 </Style>
                 <Style TargetType="{x:Type TextBox}">
                     <Setter Property="Height" Value="23"/>
-                    <Setter Property="Width" Value="150"/>
+                    <Setter Property="Width" Value="120"/>
                 </Style>
                 <Style TargetType="{x:Type Label}">
                     <Setter Property="Margin" Value="10,0,0,0"/>
                 </Style>
             </StackPanel.Resources>
-            
-           <StackPanel>
+
+            <StackPanel>
                 <TextBox x:Name="UserName" Height="23"/>
-                <Label x:Name="UserNameLabel"/>
+                <Label x:Name="UserNameLabel" MinWidth="150"/>
             </StackPanel>
             <StackPanel >
                 <TextBox x:Name="UserGender"/>
@@ -57,13 +70,13 @@
                 <Label x:Name="UserHeightLabel"/>
             </StackPanel>
             <StackPanel >
-                <TextBox x:Name="UserBirthday"/>
+                <TextBox x:Name="UserBirthday" />
                 <Label x:Name="UserBirthdayLabel"/>
             </StackPanel>
             <Button x:Name="Apply" Content="Войти" Width="74" Click="Button_Click" Margin="0,20,20,0"/>
         </StackPanel>
-        
-        <Grid Grid.Column="2" Grid.Row="1" x:Name="FoodArea" Margin="10,0,0,0" Visibility="Hidden">
+
+        <Grid Grid.Column="3" Grid.Row="1" x:Name="FoodArea" Margin="10,0,0,0" Visibility="Hidden">
             <TextBox x:Name="FoodName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="2,0,0,0" />
             <Label x:Name="FoodNameLabel" Content="Название пищи" HorizontalAlignment="Left" Margin="138,0,0,282" VerticalAlignment="Bottom"/>
             <TextBox x:Name="FoodWeight" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="2,44,0,0" />
@@ -79,17 +92,17 @@
             <Button x:Name="FoodButton" Content="Добавить продукт" HorizontalAlignment="Left" Margin="2,234,0,0" VerticalAlignment="Top" Width="118" Height="42" Click="FoodButton_Click" RenderTransformOrigin="0.55,2.071"/>
             <Button x:Name="ShowAllFoods" Content="Показать сьеденные продукты" HorizontalAlignment="Left" Margin="137,234,0,0" VerticalAlignment="Top" Width="189" Height="42" RenderTransformOrigin="0.55,2.071" Click="ShowAllFoods_Click"/>
         </Grid>
-        <StackPanel  x:Name="ToDoArea" Grid.Column="1" Grid.Row="2" Visibility="Hidden">
+        <StackPanel  x:Name="ToDoArea" Grid.Column="1" Grid.Row="2" Visibility="Hidden" Grid.ColumnSpan="2">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Height" Value="30"/>
                     <Setter Property="Margin" Value="0,0,0,10"/>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="ShowFoodAreaButton" Content="Добавить сьеденную пищу" Click="ShowFoodAreaButton_Click"/>
-            <Button x:Name="ShowExersiceAreaButton" Content="Добавить проделанное упражнение" Click="ShowExersiceAreaButton_Click"/>
+            <Button x:Name="ShowFoodAreaButton" Content="Еда" Click="ShowFoodAreaButton_Click"/>
+            <Button x:Name="ShowExersiceAreaButton" Content="Упражнения" Click="ShowExersiceAreaButton_Click"/>
         </StackPanel>
-        <StackPanel x:Name="ExerciseArea" Grid.Column="3" Grid.Row="1" Orientation="Vertical" Visibility="Hidden">
+        <StackPanel x:Name="ExerciseArea" Grid.Column="4" Grid.Row="1" Orientation="Vertical" Visibility="Hidden">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type StackPanel}">
                     <Setter Property="Margin" Value="0,10,0,0"/>
@@ -119,11 +132,12 @@
                 <TextBox x:Name="ExerciseEnergy"/>
                 <Label x:Name="ExerciseEnergyLabel"/>
             </StackPanel>
-            
-            
+
+
             <Button x:Name="AddExerciseButton" Content="Добавить упражение" Click="AddExerciseButton_Click" Margin="50,20,50,0"/>
             <Button x:Name="ShowExerciseButton" Content="Показать выполненные упражения" Click="ShowExerciseButton_Click" Margin="50,20,50,0"/>
         </StackPanel>
+
 
     </Grid>
 </Window>

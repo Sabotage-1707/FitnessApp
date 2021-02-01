@@ -61,6 +61,24 @@ namespace FitnessAppInterface.Languages {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Добавить упражение.
+        /// </summary>
+        public static string AddExercise {
+            get {
+                return ResourceManager.GetString("AddExercise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Добавить еду.
+        /// </summary>
+        public static string AddFood {
+            get {
+                return ResourceManager.GetString("AddFood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Затрачиваемые каллории в минуту.
         /// </summary>
         public static string exerciseEnergy {
@@ -160,6 +178,51 @@ namespace FitnessAppInterface.Languages {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Войти.
+        /// </summary>
+        public static string LogIn {
+            get {
+                return ResourceManager.GetString("LogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Показать выполненные упражнения.
+        /// </summary>
+        public static string ShowCompletedExercises {
+            get {
+                return ResourceManager.GetString("ShowCompletedExercises", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Показать съеденную еду.
+        /// </summary>
+        public static string ShowEatenFood {
+            get {
+                return ResourceManager.GetString("ShowEatenFood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Упражнения.
+        /// </summary>
+        public static string ShowExercises {
+            get {
+                return ResourceManager.GetString("ShowExercises", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Еда.
+        /// </summary>
+        public static string ShowFood {
+            get {
+                return ResourceManager.GetString("ShowFood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Дата рождения пользователя.
         /// </summary>
         public static string userBirthday {
@@ -219,6 +282,15 @@ namespace FitnessAppInterface.Languages {
         public static string userWeight {
             get {
                 return ResourceManager.GetString("userWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на лет/год.
+        /// </summary>
+        public static string Years {
+            get {
+                return ResourceManager.GetString("Years", resourceCulture);
             }
         }
     }

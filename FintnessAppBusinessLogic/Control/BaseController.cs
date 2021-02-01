@@ -9,35 +9,16 @@ using System.Threading.Tasks;
 namespace FintnessAppBusinessLogic.Control
 {
     public abstract class BaseController
-    {
-        /// <summary>
-        /// Сохранение в файл.
-        /// </summary>
-        /// <param name="fileName"> Название файла. </param>
-        /// <param name="item"> Сохроняемый объект. </param>
-        protected void Save(string fileName, object item)
+    { 
+
+        protected void Save<T>(List<T> item, IDataSaver manager) where T : class
         {
-            var formatter = new BinaryFormatter();
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, item);
-            }
+            manager.Save(item);
         }
-        protected T Load<T>(string fileName)
+
+        protected List<T> Load<T>(IDataSaver manager) where T : class
         {
-            var formatter = new BinaryFormatter();
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0 && formatter.Deserialize(fs) is T item)
-                {
-                    return item;
-                }
-                else
-                {
-                    return default(T);
-                }
-               
-            }
+            return manager.Load<T>();
         }
     }
 }

@@ -18,9 +18,10 @@ namespace FintnessAppBusinessLogic.Control.Tests
         {
             //Arange 
             var userName = Guid.NewGuid().ToString();
+            var manager = new SerializableSaver();
 
             //Act
-            var controller = new UserController(userName);
+            var controller = new UserController(userName,manager);
 
             //Assert
             Assert.AreEqual(userName, controller.CurrentUser.Name);
@@ -35,11 +36,12 @@ namespace FintnessAppBusinessLogic.Control.Tests
             var gender = Guid.NewGuid().ToString();
             var date = DateTime.Now.AddYears(-18);
             var weight = rnd.Next(10, 200);
+            var manager = new SerializableSaver();
             var height = rnd.Next(50, 200);
-            var controller = new UserController(userName);
+            var controller = new UserController(userName,manager);
             //Act
             controller.SetNewUserData(gender, date, weight, height);
-            var controller2 = new UserController(userName);
+            var controller2 = new UserController(userName, manager);
             
             //Assert
             Assert.AreEqual(userName, controller2.CurrentUser.Name);

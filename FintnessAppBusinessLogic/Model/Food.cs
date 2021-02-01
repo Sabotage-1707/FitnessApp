@@ -9,6 +9,7 @@ namespace FintnessAppBusinessLogic.Model
     [Serializable]
     public class Food
     {
+        public int Id { get; set; }
         /// <summary>
         /// Название продукта.
         /// </summary>
@@ -32,7 +33,8 @@ namespace FintnessAppBusinessLogic.Model
         /// Углеводы
         /// </summary>
         public double Carbohydrates { get; }
-
+        public virtual ICollection<Eating> Eatings { get; set; }
+        public Food() { }
 
         public Food(string name) : this(name, 0, 0, 0, 0) { }
 

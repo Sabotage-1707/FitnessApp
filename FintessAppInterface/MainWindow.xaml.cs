@@ -27,11 +27,14 @@ namespace FitnessAppInterface
         UserController userController;
         EatingController eatingController;
         ExerciseController exerciseController;
+        IDataSaver manager = new SerializableSaver();
+        CultureInfo currentCulture = CultureInfo.CreateSpecificCulture("ru-ru");
         public MainWindow()
         {
             InitializeComponent();
             HideAllUserFields();
-            FillAllFields();
+        
+            FillAllFields(currentCulture);
 
         }
 
@@ -41,7 +44,7 @@ namespace FitnessAppInterface
             {
                 if (UserGender.Visibility == Visibility.Hidden)
                 {
-                    userController = new UserController(UserName.Text);
+                    userController = new UserController(UserName.Text,manager);
                     if (userController.IsNewUser)
                     {
                         ShowAllUserFields();
@@ -51,21 +54,22 @@ namespace FitnessAppInterface
                         MessageBox.Show(userController.CurrentUser.ToString());
                         UserArea.Visibility = Visibility.Hidden;
                         ToDoArea.Visibility = Visibility.Visible;
-                        eatingController = new EatingController(userController.CurrentUser);
-                        exerciseController = new ExerciseController(userController.CurrentUser);
+                        eatingController = new EatingController(userController.CurrentUser,manager);
+                        exerciseController = new ExerciseController(userController.CurrentUser,manager);
                     }
                 }
                 else
                 {
+                    var resourseManager = new ResourceManager("FitnessAppInterface.Languages.Messages", typeof(MainWindow).Assembly);
                     userController.SetNewUserData(UserGender.Text,
                                                   DateTime.Parse(UserBirthday.Text),
                                                   double.Parse(UserWeight.Text),
                                                   double.Parse(UserHeight.Text));
-                    MessageBox.Show(userController.CurrentUser.ToString());
+                    MessageBox.Show(userController.CurrentUser.ToString() +" "+ userController.CurrentUser.Age +"("+ resourseManager.GetString("Years", currentCulture)+")");
                     UserArea.Visibility = Visibility.Hidden;
                     ToDoArea.Visibility = Visibility.Visible;
-                    eatingController = new EatingController(userController.CurrentUser);
-                    exerciseController = new ExerciseController(userController.CurrentUser);
+                    eatingController = new EatingController(userController.CurrentUser,manager);
+                    exerciseController = new ExerciseController(userController.CurrentUser,manager);
 
 
                 }
@@ -134,10 +138,9 @@ namespace FitnessAppInterface
                 MessageBox.Show($"Блюдо {item.Key} - {item.Value} грамм)");
             }
         }
-        private void FillAllFields()
+        private void FillAllFields(CultureInfo culture)
         {
 
-            var culture = CultureInfo.CreateSpecificCulture("ru-ru");
             var resourseManager = new ResourceManager("FitnessAppInterface.Languages.Messages", typeof(MainWindow).Assembly);
 
             UserNameLabel.Content = resourseManager.GetString("userName", culture);
@@ -149,6 +152,18 @@ namespace FitnessAppInterface
             ExerciseEnergyLabel.Content = resourseManager.GetString("exerciseEnergy", culture);
             ExerciseStartLabel.Content = resourseManager.GetString("exerciseStart", culture); 
             ExerciseFinishLabel.Content= resourseManager.GetString("exerciseFinish", culture);
+            ShowFoodAreaButton.Content = resourseManager.GetString("ShowFood", culture);
+            ShowExerciseButton.Content = resourseManager.GetString("ShowCompletedExercises", culture);
+            FoodNameLabel.Content = resourseManager.GetString("foodName", culture);
+            FoodCalloriesLabel.Content = resourseManager.GetString("foodCallories", culture);
+            FoodFatsLabel.Content = resourseManager.GetString("foodFats", culture);
+            FoodCarbohydratesLabel.Content = resourseManager.GetString("foodCarbohydrates", culture);
+            FoodProteinsLabel.Content = resourseManager.GetString("foodProteins", culture);
+            FoodButton.Content = resourseManager.GetString("AddFood", culture);
+            ShowAllFoods.Content = resourseManager.GetString("ShowEatenFood", culture);
+            AddExerciseButton.Content = resourseManager.GetString("AddExercise", culture);
+            ShowExersiceAreaButton.Content = resourseManager.GetString("ShowExercises", culture);
+            Apply.Content = resourseManager.GetString("LogIn", culture);
         }
         private void HideAllUserFields()
         {
@@ -210,6 +225,40 @@ namespace FitnessAppInterface
         {
             FoodArea.Visibility = Visibility.Hidden;
             ExerciseArea.Visibility = Visibility.Visible;
+        }
+
+        private void RussianLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            var culture = CultureInfo.CreateSpecificCulture("ru-ru");
+            currentCulture = culture;
+            FillAllFields(culture);
+        }
+        private void EnglishLanguage_Click(object sender, RoutedEventArgs e)
+        {
+            var culture = CultureInfo.CreateSpecificCulture("en-US");
+            currentCulture = culture;
+            FillAllFields(culture);
+        }
+        
+        private void SaveAndLoadFromFile_Click(object sender, RoutedEventArgs e)
+        {
+            manager = new SerializableSaver();
+            HideAdditionalAreas();
+
+        }
+        private void SaveAndLoadFromDataBase_Click(object sender, RoutedEventArgs e)
+        {
+            manager = new DatabaseSaver();
+            HideAdditionalAreas();
+
+        }
+        private void HideAdditionalAreas()
+        {
+            FoodArea.Visibility = Visibility.Hidden;
+            ExerciseArea.Visibility = Visibility.Hidden;
+            ToDoArea.Visibility = Visibility.Hidden;
+            UserArea.Visibility = Visibility.Visible;
+            HideAllUserFields();
         }
     }
 }

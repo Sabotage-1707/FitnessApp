@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace FitnessAppBusinessLogic.Model
 {
@@ -9,10 +9,14 @@ namespace FitnessAppBusinessLogic.Model
     [Serializable]
     public class Gender
     {
+        public int Id { get; set; }
         /// <summary>
         /// Название пола.
         /// </summary>
         public string Name{ get;}
+        public virtual ICollection<User> Users { get; set; }
+
+        public Gender() { }
 
         /// <summary>
         /// Создание пола

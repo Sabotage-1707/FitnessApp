@@ -1,5 +1,6 @@
-﻿using System;
-
+﻿using FintnessAppBusinessLogic.Model;
+using System;
+using System.Collections.Generic;
 
 namespace FitnessAppBusinessLogic.Model
 {
@@ -9,8 +10,9 @@ namespace FitnessAppBusinessLogic.Model
     [Serializable]
     public class User
     {
-        
+
         #region Свойства
+        public int Id { get; set; }
         /// <summary>
         /// Имя.
         /// </summary>
@@ -18,7 +20,8 @@ namespace FitnessAppBusinessLogic.Model
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender Gender { get; set; }
+        public virtual Gender Gender { get; set; }
+        public int? GenderId { get; set; }
         /// <summary>
         /// Дата рождения.
         /// </summary>
@@ -45,6 +48,8 @@ namespace FitnessAppBusinessLogic.Model
             }
         }
         #endregion
+        public virtual ICollection<Eating> Eatings { get; set; }
+        public virtual ICollection<Exercise> Exercises { get; set; }
         /// <summary>
         /// Создание пользователя
         /// </summary>
@@ -76,7 +81,7 @@ namespace FitnessAppBusinessLogic.Model
             Weight = weight;
             Height = height;
         }
-
+        public User() { }
         public User(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -88,7 +93,7 @@ namespace FitnessAppBusinessLogic.Model
 
         public override string ToString()
         {
-            return Name + " " + Age + "(лет/год)";
+            return Name;
         }
     }
 }

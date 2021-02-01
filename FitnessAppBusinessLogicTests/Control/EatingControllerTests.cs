@@ -21,8 +21,9 @@ namespace FintnessAppBusinessLogic.Control.Tests
             //Arange 
             var userName = Guid.NewGuid().ToString();
             var foodName = Guid.NewGuid().ToString();
-            var userController = new UserController(userName);
-            var eatingController = new EatingController(userController.CurrentUser);
+            var manager = new SerializableSaver();
+            var userController = new UserController(userName, manager);
+            var eatingController = new EatingController(userController.CurrentUser,manager);
             Food food = new Food(foodName, rnd.Next(50, 500), rnd.Next(50, 500), rnd.Next(50, 500), rnd.Next(50, 500));
             //Act
             eatingController.Add(food, 200);

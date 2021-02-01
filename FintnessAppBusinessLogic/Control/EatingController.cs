@@ -8,20 +8,17 @@ using System.Threading.Tasks;
 
 namespace FintnessAppBusinessLogic.Control
 {
-    public class EatingController:BaseController
+    public class EatingController : BaseController
     {
-        private const string EATING_FILE_NAME = "eating.dat";
-
-        private const string FOODS_FILE_NAME = "foods.dat";
         private readonly User user;
         public List<Food> Foods;
         public Eating Eating;
+        private IDataSaver manager;
 
-
-        public EatingController(User user)
+        public EatingController(User user, IDataSaver manager)
         {
             this.user = user ?? throw new ArgumentNullException("Пользователь не может быть пустым",nameof(user));
-
+            this.manager = manager ?? throw new ArgumentNullException("Способ работы не может быть пустым или null", nameof(manager));
             Foods = GetAllFoods();
 
             Eating = GetEating();
@@ -29,11 +26,11 @@ namespace FintnessAppBusinessLogic.Control
 
         private List<Food> GetAllFoods()
         {
-            return Load<List<Food>>(FOODS_FILE_NAME) ?? new List<Food>();
+            return Load<Food>(manager) ?? new List<Food>();
         }
         private Eating GetEating()
         {
-            return Load<Eating>(EATING_FILE_NAME) ?? new Eating(user);
+            return Load<Eating>(manager).FirstOrDefault() ?? new Eating(user);
         }
         public void Add(Food food, double weight)
         {
@@ -52,8 +49,8 @@ namespace FintnessAppBusinessLogic.Control
         }
         public void Save()
         {
-            Save(FOODS_FILE_NAME, Foods);
-            Save(EATING_FILE_NAME, Eating);
+            Save(Foods, manager);
+            Save(new List<Eating>() { Eating}, manager);
         }
     }
 }
